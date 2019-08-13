@@ -1,12 +1,16 @@
 import React from 'react';
 import classes from './Modal.css';
+import Backdrop from '../Backdrop/Backdrop';
+import Auxi from '../../../hoc/Auxi';
 
 const modal = (props) => (
-
+    <Auxi>
+    <Backdrop show = {props.show} cancelOrder = {props.cancelOrder} />
     <div className = {classes.Modal}
     style={{transform: props.show ? 'translateY(0)' : 'translateY(-100vh)', opacity: props.show ? '1' : '0'}}>
         {props.children}
     </div>
+    </Auxi>
 )
 
 export default modal;
