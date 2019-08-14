@@ -15,6 +15,7 @@ const ordersummary = (props) => {
             <p>it has following ingredients</p>
             <p>Want to continue?</p>
             {summaryList}
+            <p><strong>Total Price : {props.price.toFixed(2)}</strong></p>
             <Button onClick={props.cancelOrder} type ='Danger'>Cancel</Button>
             <Button onClick = {props.purchaseContinue} type ='Success'>Continue</Button>
         </Auxi>
