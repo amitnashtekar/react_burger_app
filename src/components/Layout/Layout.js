@@ -1,16 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Auxi from '../../hoc/Auxi';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
-const layout = (props) => (
-    <Auxi>
-        <Toolbar />
-        <SideDrawer />
-        <main className={classes.Content}>
-            {props.children}
-        </main>
-    </Auxi>    
-);
+class Layout extends Component {
 
-export default layout;
+    state = {
+        showSideDrawer: true
+    }
+    seideDrawerCloseHandlr = () => {
+        this.setState({showSideDrawer: false})
+    }
+    render() {
+        return(
+            <Auxi>
+                <Toolbar />
+                <SideDrawer open = {this.state.showSideDrawer}  closed ={this.seideDrawerCloseHandlr} />
+                <main className={classes.Content}>
+                    {this.props.children}
+                </main>
+            </Auxi>
+        )
+    }
+}
+
+export default Layout;
