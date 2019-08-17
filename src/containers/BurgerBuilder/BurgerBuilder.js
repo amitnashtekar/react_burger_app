@@ -6,6 +6,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import WithErrorHandler from '../../hoc/withErrorHandlr/withErrorHandlr';
 
 const INGREDIENTS_PRICE = {
     salad:1.2,
@@ -71,7 +72,7 @@ class BurgerBuilder extends Component {
     purchaseOrder = () => {
         this.setState({purchasing:true});
     }
-    cancelOrder = () => {
+    closeModal = () => {
         this.setState({purchasing:false});
     }
     purchaseContinue = () => {
@@ -91,12 +92,12 @@ class BurgerBuilder extends Component {
             deliveryMethod:'fastest',
             price:this.state.totalPrice
         }
-        axios.post('/orders.json',order)
+        axios.post('orders',order)
         .then(resp => {
-            this.setState({loading:false})
+            this.setState({loading:false,purchasing:false})
         })
         .catch(err => {
-            this.setState({loading:false})
+            this.setState({loading:false,purchasing:false})
         });
     }
 
@@ -120,7 +121,7 @@ class BurgerBuilder extends Component {
             <Auxi>
                 <Burger ingredients={this.state.ingredients}></Burger>
                 <Modal show = {this.state.purchasing} 
-                    cancelOrder = {this.cancelOrder}>
+                    closeModal = {this.closeModal}>
                     {orderSummary}
                 </Modal>
                 <BuildControls ingredientAdded = {this.addIngredientHandler}
@@ -135,4 +136,4 @@ class BurgerBuilder extends Component {
     
 }
 
-export default BurgerBuilder;
+export default WithErrorHandler(BurgerBuilder, axios);
