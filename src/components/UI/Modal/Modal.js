@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Modal.css';
 import Backdrop from '../Backdrop/Backdrop';
-import Auxi from '../../../hoc/Auxi';
+import Auxi from '../../../hoc/Auxi/Auxi';
 
 const modal = (props) => (
     <Auxi>
