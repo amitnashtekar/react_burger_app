@@ -15,7 +15,7 @@ let attachedClasses = [classes.SideDrawer, classes.Logo, classes.Close];
  
  return(
     <Auxi>
-        <Backdrop show={props.open} cancelOrder = {props.closed} />
+        <Backdrop show={props.open} clicked = {props.closed} />
         <div className = {attachedClasses.join(' ')}>
             <Logo />
             <nav>

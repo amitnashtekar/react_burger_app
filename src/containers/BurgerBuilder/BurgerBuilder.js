@@ -136,7 +136,7 @@ class BurgerBuilder extends Component {
         }
         if(!this.state.loading && this.state.ingredients) {
             orderSummary =  <OrderSummary  ingredients = {this.state.ingredients}
-            cancelOrder = {this.cancelOrder}
+            cancelOrder = {this.closeModal}
             purchaseContinue = {this.purchaseContinue}
             price = {this.state.totalPrice}>
            </OrderSummary>
