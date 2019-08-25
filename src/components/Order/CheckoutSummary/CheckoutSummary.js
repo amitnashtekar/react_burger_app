@@ -9,8 +9,8 @@ const CustomerSummary = props => {
                 <div>Here is your Order to checkout!! Enjoy !!</div> 
                 <div>
                     <Burger ingredients={props.ingredients}/>
-                    <Button onClick={props.cancelOrder} type ='Danger'>Cancel</Button>
-                    <Button onClick = {props.purchaseContinue} type ='Success'>Continue</Button>
+                    <Button onClick={props.onCancel} type ='Danger'>Cancel</Button>
+                    <Button onClick = {props.onContinue} type ='Success'>Continue</Button>
                 </div>
         </div>
     )
