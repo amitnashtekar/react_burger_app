@@ -11,12 +11,7 @@ import { connect} from 'react-redux';
 import * as actionTypes from '../../Store/Actions/actions';
 
 
-const INGREDIENTS_PRICE = {
-    salad:1.2,
-    bacon:0.8,
-    cheese:1,
-    meat:0.7
-}
+
 
 class BurgerBuilder extends Component {
     state = {
@@ -42,33 +37,33 @@ class BurgerBuilder extends Component {
         // })
     }    
 
-    addIngredientHandler = (type) => {
-        let updatedCount = this.props.ings[type];
-        updatedCount = updatedCount + 1;
-        let updatedIngredients = {
-            ...this.props.ings
-        };
-        updatedIngredients[type] = updatedCount;
-        var newPrice = this.state.totalPrice + INGREDIENTS_PRICE[type];
-        this.setState({ingredients:updatedIngredients, totalPrice: newPrice});
-        this.updateIngredients(updatedIngredients);
+    // addIngredientHandler = (type) => {
+    //     let updatedCount = this.props.ings[type];
+    //     updatedCount = updatedCount + 1;
+    //     let updatedIngredients = {
+    //         ...this.props.ings
+    //     };
+    //     updatedIngredients[type] = updatedCount;
+    //     var newPrice = this.props.totalPrice + INGREDIENTS_PRICE[type];
+    //     this.setState({ingredients:updatedIngredients, totalPrice: newPrice});
+    //     this.updateIngredients(updatedIngredients);
 
-    }
+    // }
     
-    removeIngredientHandler = (type) => {
-        let updatedCount = this.props.ings[type];
-        if (updatedCount === 0) {
-            return; 
-        }
-        updatedCount = updatedCount - 1;
-        let updatedIngredients = {
-            ...this.props.ings
-        };
-        updatedIngredients[type] = updatedCount;
-        var newPrice = this.state.totalPrice - INGREDIENTS_PRICE[type];
-        this.setState({ingredients:updatedIngredients, totalPrice: newPrice});
-        this.updateIngredients(updatedIngredients);
-    }
+    // removeIngredientHandler = (type) => {
+    //     let updatedCount = this.props.ings[type];
+    //     if (updatedCount === 0) {
+    //         return; 
+    //     }
+    //     updatedCount = updatedCount - 1;
+    //     let updatedIngredients = {
+    //         ...this.props.ings
+    //     };
+    //     updatedIngredients[type] = updatedCount;
+    //     var newPrice = this.props.totalPrice - INGREDIENTS_PRICE[type];
+    //     this.setState({ingredients:updatedIngredients, totalPrice: newPrice});
+    //     this.updateIngredients(updatedIngredients);
+    // }
 
     updateIngredients = (ingredients) => {
         const sum = Object.keys(ingredients)
@@ -94,7 +89,7 @@ class BurgerBuilder extends Component {
         for(let i in this.props.ings) {
             queryParam.push(encodeURIComponent(i) + '=' + this.props.ings[i])
         }
-        queryParam.push('totalPrice='+ this.state.totalPrice);
+        queryParam.push('totalPrice='+ this.props.totalPrice);
         var queryString ='?' + queryParam.join('&');
         this.props.history.push({
             pathname:'/checkout',
@@ -121,7 +116,7 @@ class BurgerBuilder extends Component {
                     <BuildControls ingredientAdded = {this.props.onIngredientAdded}
                     ingredientRemoved = {this.props.onIngredientRemoved}
                     disabled = {disableInfo}
-                    price = {this.state.totalPrice}
+                    price = {this.props.totalPrice}
                     purchesable = {!this.state.purchesable}
                     ordered = {this.purchaseOrder}/>
                 </Auxi>
@@ -131,7 +126,7 @@ class BurgerBuilder extends Component {
             orderSummary =  <OrderSummary  ingredients = {this.props.ings}
             cancelOrder = {this.closeModal}
             purchaseContinue = {this.purchaseContinue}
-            price = {this.state.totalPrice}>
+            price = {this.props.totalPrice}>
            </OrderSummary>
         }
         
@@ -151,7 +146,8 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients
+        ings: state.ingredients,
+        totalPrice:state.totalPrice
     }
 }
 
