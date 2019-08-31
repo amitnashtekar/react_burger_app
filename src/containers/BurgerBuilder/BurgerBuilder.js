@@ -22,7 +22,7 @@ class BurgerBuilder extends Component {
         //     meat:0
         // },
         totalPrice:4,
-        purchesable: false,
+        //purchesable: false,
         purchasing: false,
         loading: false,
         error:false 
@@ -85,17 +85,17 @@ class BurgerBuilder extends Component {
     }
     purchaseContinue = () => {
         alert('purchase continued !');
-        const queryParam = [];
-        for(let i in this.props.ings) {
-            queryParam.push(encodeURIComponent(i) + '=' + this.props.ings[i])
-        }
-        queryParam.push('totalPrice='+ this.props.totalPrice);
-        var queryString ='?' + queryParam.join('&');
-        this.props.history.push({
-            pathname:'/checkout',
-            search: queryString
-        })
-
+        // const queryParam = [];
+        // for(let i in this.props.ings) {
+        //     queryParam.push(encodeURIComponent(i) + '=' + this.props.ings[i])
+        // }
+        // queryParam.push('totalPrice='+ this.props.totalPrice);
+        // var queryString ='?' + queryParam.join('&');
+        // this.props.history.push({
+        //     pathname:'/checkout',
+        //     search: queryString
+        // })
+        this.props.history.push('/checkout');
         
     }
 
