@@ -6,9 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import { createStore } from 'redux';
-import reducer from '../src/Store/Reducers/reducer';
+import BurgerBuilderReducer from '../src/Store/Reducers/BurgerBuilder';
 
-const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(BurgerBuilderReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const app =(
     <Provider store={store}>
