@@ -84,7 +84,7 @@ class BurgerBuilder extends Component {
         this.setState({purchasing:false});
     }
     purchaseContinue = () => {
-        alert('purchase continued !');
+        //alert('purchase continued !');
         // const queryParam = [];
         // for(let i in this.props.ings) {
         //     queryParam.push(encodeURIComponent(i) + '=' + this.props.ings[i])
@@ -95,6 +95,7 @@ class BurgerBuilder extends Component {
         //     pathname:'/checkout',
         //     search: queryString
         // })
+        this.props.onPurchaseInit();
         this.props.history.push('/checkout');
         
     }
@@ -156,7 +157,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onIngredientAdded:(ingName) => dispatch(burgerBuilderActions.addIngredients(ingName)),
         onIngredientRemoved:(ingName) => dispatch(burgerBuilderActions.removeIngredients(ingName)),
-        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
+        onPurchaseInit: () => dispatch(burgerBuilderActions.purchaseOrderInit())
     }
     
 }

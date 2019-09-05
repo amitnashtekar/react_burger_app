@@ -27,6 +27,11 @@ export const removeIngredients = (name) => {
         ingredientName: name
     }
 }
+export const purchaseOrderInit = () => {
+    return {
+        type: actionTypes.PURCHASE_INIT
+    }
+}
 
 export const initIngredients = () => {
     return dispatch => {
